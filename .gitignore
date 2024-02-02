@@ -5,6 +5,7 @@
 *.ini
 *.npy
 *.npz
+*.egg-info
 /venv
 /.vscode
 /.idea

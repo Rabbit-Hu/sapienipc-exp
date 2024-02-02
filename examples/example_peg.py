@@ -24,7 +24,7 @@ from sapienipc.ipc_utils.logging_utils import ipc_logger
 
 ipc_logger.setLevel("DEBUG")
 
-wp.config.kernel_cache_dir = "./build"
+# wp.config.kernel_cache_dir = "./build"
 wp.init()
 
 assets_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../assets"))
@@ -37,7 +37,7 @@ scene = sapien.Scene()
 
 scene.set_ambient_light([0.5, 0.5, 0.5])
 scene.add_directional_light([0, -1, -1], [0.5, 0.5, 0.5], True)
-scene.set_environment_map(os.path.join(assets_dir, "env.ktx"))
+# scene.set_environment_map(os.path.join(assets_dir, "env.ktx"))
 # scene.add_ground(0)
 
 # add a camera to indicate shader
@@ -88,7 +88,7 @@ ipc_system_config.device = wp_device
 ipc_system = IPCSystem(ipc_system_config)
 scene.add_system(ipc_system)
 
-sensor_friction = 4.0
+sensor_friction = 1.0
 abd_friction = 0.0
 
 sensor_color = [0.3, 0.9, 0.9, 1.0]  # cyan

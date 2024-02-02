@@ -20,7 +20,7 @@ from sapienipc.ipc_utils.logging_utils import ipc_logger
 
 ipc_logger.setLevel("DEBUG")
 
-wp.config.kernel_cache_dir = "./build"
+# wp.config.kernel_cache_dir = "./build"
 wp.init()
 np.random.seed(0)
 
@@ -162,7 +162,7 @@ for i in range(n_scenes):
 
     scene.set_ambient_light([0.5, 0.5, 0.5])
     scene.add_directional_light([0, -1, -1], [0.5, 0.5, 0.5], True)
-    scene.set_environment_map(os.path.join(assets_dir, "env.ktx"))
+    # scene.set_environment_map(os.path.join(assets_dir, "env.ktx"))
 
     # add a camera to indicate shader
     cam_entity = sapien.Entity()
