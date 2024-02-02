@@ -1,0 +1,13 @@
+*__pycache__
+*.nvvp
+*.nsys-rep
+*.sqlite
+*.ini
+*.npy
+*.npz
+/venv
+/.vscode
+/.idea
+/prototypes
+/data
+/build/gen
