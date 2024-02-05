@@ -41,4 +41,4 @@ ipc_logger.setLevel(logging.INFO)
 # logger.addHandler(file_handler)
 ipc_logger.handlers.clear()
 ipc_logger.propagate = False
-ipc_logger.addHandler(console_handler)
+# ipc_logger.addHandler(console_handler)
