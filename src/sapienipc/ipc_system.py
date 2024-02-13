@@ -375,7 +375,7 @@ class IPCSystem(sapien.System):
 
         self.particle_dbc_tag = wp.zeros(
             max_p, dtype=wp.int32, device=device
-        )  # before _process_dbc
+        )  # before _process_dbc, 0 if free, 1 if moving dbc, 2 if fixed dbc
         self.particle_dbc_mask = wp.zeros(
             max_p, dtype=wp.float32, device=device
         )  # after _process_dbc
@@ -1453,7 +1453,11 @@ class IPCSystem(sapien.System):
             proxy_positions, dtype=wp.vec3, device=self.config.device
         )
 
-        wp_slice(self.particle_dbc_tag, begin - 4, begin).fill_(1)
+        current_positions = self.get_abd_proxy_positions(component)
+        if torch.allclose(wp.to_torch(proxy_positions), current_positions):
+            wp_slice(self.particle_dbc_tag, begin - 4, begin).fill_(2)
+        else:
+            wp_slice(self.particle_dbc_tag, begin - 4, begin).fill_(1)
         wp_slice(self.particle_dbc_q, begin - 4, begin).assign(proxy_positions)
 
     def _add_constraint(self, constraint: IPCConstraint):
@@ -1705,14 +1709,11 @@ class IPCSystem(sapien.System):
         self.n_static_blocks = 0  # FEM tets + ABD affine bodies
         self.n_blocks_this_step = 0  # static blocks + contact blocks
         self.n_constraints = 0  # constraints
+        self.n_motors = 0  # motors
         self.n_surface_triangles_list.clear()  # surface triangles
         self.n_surface_edges_list.clear()  # surface edges
         self.n_surface_particles_list.clear()  # surface vertices
         self.n_surface_planes_list.clear()  # surface planes
-        self.n_surface_triangles_max = 0
-        self.n_surface_edges_max = 0
-        self.n_surface_particles_max = 0
-        self.n_surface_planes_max = 0
 
         self.step_count = 0
         self.time = 0.0  # increment by config.time_step every step
