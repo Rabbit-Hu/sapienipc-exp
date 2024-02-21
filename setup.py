@@ -8,8 +8,7 @@ setup(
     install_requires=[
         'numpy',
         'torch',
-        'sapien',
-        'warp',
         'meshio',
+        'scipy',
     ],
 )
