@@ -502,9 +502,9 @@ class IPCSystem(sapien.System):
         self._preprocess_energy(self.particle_q_prev_step)
 
         if self.config.use_graph:
-            wp.capture_begin()
+            wp.capture_begin(device=self.config.device)
             self._line_search()
-            self.line_search_graph = wp.capture_end()
+            self.line_search_graph = wp.capture_end(device=self.config.device)
 
         # if self.debug:
         #     ipc_logger.debug(

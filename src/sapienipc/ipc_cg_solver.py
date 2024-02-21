@@ -362,9 +362,9 @@ class CGSolver:
         if self.use_graph and (
             self.graph is None or self.graph_n_particles != s.n_particles
         ):
-            wp.capture_begin()
+            wp.capture_begin(device=self.device)
             self.launch_iterations(0)
-            self.graph = wp.capture_end()
+            self.graph = wp.capture_end(device=self.device)
             self.graph_n_particles = s.n_particles
 
         # ipc_logger.debug("blocks" + str(blocks.numpy()[:n_static_blocks]))
