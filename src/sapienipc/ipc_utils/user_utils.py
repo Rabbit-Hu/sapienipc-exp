@@ -37,6 +37,7 @@ def ipc_update_render(ipc_component: IPCBaseComponent, render_component: RenderC
         shape=interface['shape'],
         strides=interface['strides'],
         owner=False,
+        device=system.particle_q.device,
     )
     src = wp_slice(
         system.particle_q,
