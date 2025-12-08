@@ -1,6 +1,8 @@
 # sapienipc-exp
 SapienIPC experimental release. This release is temporary and will not be maintained. We will release a stable version soon.
 
+**Update**: Source code for the Warp kernels is now available. See the `src/sapienipc/ipc_kernels/` folder.
+
 ---
 
 Copyright 2024                             

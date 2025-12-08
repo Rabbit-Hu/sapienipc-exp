@@ -12,6 +12,8 @@ def line_search_iteration_kernel(
     energy: wp.array(dtype=float),
     x_new: wp.array(dtype=wp.vec3),
 ):
-    pass
-
-
+    tid = wp.tid()
+    scene_id = particle_scene[tid]
+    if n_halves > 0.0 and energy[scene_id] < energy_prev[scene_id]:
+        return
+    x_new[tid] = x[tid] + alpha[scene_id] * wp.pow(0.5, n_halves) * p[tid]
