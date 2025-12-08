@@ -56,6 +56,7 @@ pip install -r requirements.txt
 Then build our fork of Warp in the `warp_` submodule:
 
 ```shell
+git submodule update  # just to be sure
 cd warp_
 python build_lib.py --cuda_path /usr/local/cuda  # Replace with your cuda path 
 ```
